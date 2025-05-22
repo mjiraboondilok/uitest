@@ -16,7 +16,6 @@ export default function APIPage() {
             const response = await ky.post("/api/example", {
                 json: { number: value },
             });
-            console.log(response.ok)
             if (!response.ok) {
                 setAlert('Invalid API call')
             }
