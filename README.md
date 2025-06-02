@@ -150,7 +150,7 @@ If at any point an error occurs while signing up a user, update the status of th
 While the asynchronous task is executing, we want to listen to the async_tasks table and wait for the task to complete. 
 
 Add this to a SQL migration:
- - alter publication supabase_realtime add table public.async_tasks;
+ - `alter publication supabase_realtime add table public.async_tasks;`
 
 Add this skeleton to the create new users form component to help you get started
 
