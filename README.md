@@ -145,7 +145,7 @@ Note that /users/signup_one must insert a record into the user_api table alongsi
 
 If at any point an error occurs while signing up a user, update the status of the async_task to ‘error’ in the database and stop the task. 
 
-Back in the uitest repo, 
+**Back in the uitest repo,**
 
 While the asynchronous task is executing, we want to listen to the async_tasks table and wait for the task to complete. 
 
