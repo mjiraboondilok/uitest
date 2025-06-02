@@ -154,7 +154,8 @@ Add this to a SQL migration:
 
 Add this skeleton to the create new users form component to help you get started
 
-  ```useEffect(() => {
+```
+useEffect(() => {
     const getTaskStatus = async () => {
       try {
        const res = await ky.get(`/api/async_tasks/${taskId}`)
@@ -186,7 +187,8 @@ Add this skeleton to the create new users form component to help you get started
     }
 
     getTaskStatus()
-  }, [taskId])```
+  }, [taskId])
+```
 
 **Bonus 1**
 
