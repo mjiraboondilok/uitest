@@ -80,12 +80,12 @@ to access, according to the management hierarchy.
 ### Setup
 1. Clone the apitest repo: [https://github.com/candoriq/apitest/](https://github.com/candoriq/apitest) 
 2. Link the API to local Supabase by creating a .env file in the root folder and adding the following keys:
-   - SUPABASE_URL="http://host.docker.internal:64321"
-   - SUPABASE_SERVICE_KEY="{insert anon key}"
-   - APP_URL="http://localhost:8080"
+   - `SUPABASE_URL="http://host.docker.internal:64321"`
+   - `SUPABASE_SERVICE_KEY="{insert anon key}"`
+   - `APP_URL="http://localhost:8080"`
 3. Add the following key to the .env.local file in the uitest repo
-   - COMASYNC_URL="http://localhost:8080"
-4. Run the API in a separate compiler window using docker-compose up --build
+   - `COMASYNC_URL="http://localhost:8080"`
+4. Run the API in a separate compiler window using `docker-compose up --build`
 
 ### Task
 
@@ -154,7 +154,7 @@ Add this to a SQL migration:
 
 Add this skeleton to the create new users form component to help you get started
 
-  useEffect(() => {
+  `useEffect(() => {
     const getTaskStatus = async () => {
       try {
        const res = await ky.get(`/api/async_tasks/${taskId}`)
@@ -186,7 +186,7 @@ Add this skeleton to the create new users form component to help you get started
     }
 
     getTaskStatus()
-  }, [taskId])
+  }, [taskId])`
 
 **Bonus 1**
 
