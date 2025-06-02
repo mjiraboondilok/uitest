@@ -4,21 +4,27 @@ import { usePathname } from 'next/navigation'
 import React, { PropsWithChildren } from 'react'
 import { FiBriefcase } from 'react-icons/fi';
 import { HiOutlineUserGroup } from 'react-icons/hi';
+import { CiCloud } from "react-icons/ci";
 
 export const PAGES = [
 	{
 		label: 'Employees',
-    href: '/employee',
-    icon: HiOutlineUserGroup
+		href: '/employee',
+		icon: HiOutlineUserGroup
 	},
-  {
-    label: 'Jobs',
-    href: '/job',
-    icon: FiBriefcase
-  },
+	{
+		label: 'Jobs',
+		href: '/job',
+		icon: FiBriefcase
+	},
+	{
+		label: 'API',
+		href: '/api',
+		icon: CiCloud
+	}
 ]
 
-const PageWithHeader = ({children, className} : PropsWithChildren<{className: string}>) => {
+const PageWithHeader = ({ children, className }: PropsWithChildren<{ className: string }>) => {
 	return (
 		<div className={cn('flex flex-col h-[100vh]', className)}>
 			<PageHeader />
@@ -35,12 +41,12 @@ const PageHeader = () => {
 	const Icon = currentPage[0].icon
 	const label = currentPage[0].label
 	return (
-    <div className="flex p-4 bg-white mb-2 justify-start items-center gap-4 group">
-      <Icon className="text-2xl text-gray-600" />
-      <h1 className="text-2xl text-gray-800 font-semibold grow capitalize">
-        {label}
-      </h1>
-    </div>
+		<div className="flex p-4 bg-white mb-2 justify-start items-center gap-4 group">
+			<Icon className="text-2xl text-gray-600" />
+			<h1 className="text-2xl text-gray-800 font-semibold grow capitalize">
+				{label}
+			</h1>
+		</div>
 	)
 }
 export default PageWithHeader
