@@ -172,7 +172,8 @@ useEffect(() => {
             'postgres_changes',
             { event: 'UPDATE', schema: 'private' },
             async (payload) => {
-              // If the payload's table is async_tasks and we have the correct task id, and if the status is done or error mutate the call that fetches user_api_id
+              // If the payload's table is async_tasks and we have the correct task id, and
+              // if the status is done or error mutate the call that fetches user_api_id
               // add code here
             }
           )
