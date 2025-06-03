@@ -37,20 +37,22 @@ async function getEmployeeData(): Promise<Employee[]> {
   }
 
 
-  return data.map(employee => {
-    return {
-      id: employee.id,
-      name: `${employee.first_name} ${employee.last_name}`,
-      salary: employee.salary,
-      email: employee.email??'',
-      bonus: employee.bonus,
-      job_title:  (employee.jobs as unknown as {name: string}).name,
-      department: (employee.departments as unknown as {name: string}).name,
-      start_date: employee.start_date,
-      manager: employee.manager_id ? employee.manager_id.first_name + ' ' + employee.manager_id.last_name : '',
-      equity: employee.equity
-    }
-  }).filter(employee => employee.manager) //TODO move this filter to query using logged in user id
+  return data
+    .filter(employee => employee.manager_id) //TODO move this filter to query using logged in user id
+    .map(employee => {
+      return {
+        id: employee.id,
+        name: `${employee.first_name} ${employee.last_name}`,
+        salary: employee.salary,
+        email: employee.email??'',
+        bonus: employee.bonus,
+        job_title:  (employee.jobs as unknown as {name: string}).name,
+        department: (employee.departments as unknown as {name: string}).name,
+        start_date: employee.start_date,
+        manager: employee.manager_id ? employee.manager_id.first_name + ' ' + employee.manager_id.last_name : '',
+        equity: employee.equity
+      }
+  })
 }
 
 
