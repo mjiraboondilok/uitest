@@ -50,7 +50,7 @@ async function getEmployeeData(): Promise<Employee[]> {
       manager: employee.manager_id ? employee.manager_id.first_name + ' ' + employee.manager_id.last_name : '',
       equity: employee.equity
     }
-  })
+  }).filter(employee => employee.manager) //TODO move this filter to query using logged in user id
 }
 
 

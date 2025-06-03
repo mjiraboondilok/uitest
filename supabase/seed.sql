@@ -22,7 +22,7 @@ INSERT INTO
         recovery_token
     ) values (
             '00000000-0000-0000-0000-000000000000',
-            uuid_generate_v4 (),
+            '6f902f1a-c3f3-4d82-ba1a-4c93d0b5bf2e',
             'authenticated',
             'authenticated',
             'david.anderson@example.com',
@@ -41,7 +41,7 @@ INSERT INTO
     ),
     (
             '00000000-0000-0000-0000-000000000000',
-            uuid_generate_v4 (),
+            'c344cd0d-55b7-42f7-9f86-50b1bbf696c2',
             'authenticated',
             'authenticated',
             'emma.williams@example.com',
