@@ -1,0 +1,7 @@
+ALTER TABLE public.async_tasks
+    ADD COLUMN created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now();
+
+ALTER TABLE public.user_api
+    ADD COLUMN created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now();
+
+
