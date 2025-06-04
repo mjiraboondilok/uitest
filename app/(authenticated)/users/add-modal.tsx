@@ -15,6 +15,7 @@ import {Label} from "@/components/ui/label";
 import {Employee} from "@/app/(authenticated)/employee/columns";
 import {FiUserPlus} from 'react-icons/fi';
 import {triggerTasks} from "@/app/(authenticated)/users/actions";
+import ky from "ky";
 
 const profiles = ["admin", "manager"]
 
@@ -36,7 +37,8 @@ export default function AddModal({employees}: AddModalProps) {
       if (!response) {
         console.warn("Failed to trigger task")
       } else {
-        setTaskId(response)
+        console.warn("enqueued task")
+        await tryEnqueueTaskTrigger(response)
       }
     } catch (error) {
       console.warn("Failed to trigger task")
@@ -62,6 +64,24 @@ export default function AddModal({employees}: AddModalProps) {
     if (!open) {
       setProfile("admin")
       setEmployeesChecked([])
+    }
+  }
+
+  const tryEnqueueTaskTrigger = async (taskId: string) => {
+    try {
+      const response = await ky.post("/api/tasks", {
+        json: {id: taskId},
+      });
+      if (!response.ok) {
+        console.warn("Failed to trigger task")
+      } else {
+        const data = await response.json() as { id: string }
+        setTaskId(data.id)
+      }
+    } catch (error) {
+      console.warn("Failed to trigger task")
+    } finally {
+      setIsLoading(false)
     }
   }
 

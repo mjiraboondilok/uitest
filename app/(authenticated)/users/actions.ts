@@ -19,7 +19,7 @@ export async function triggerTasks(payload: triggerTasksPayload) {
     const supabase = supabaseUtils.createServerClient(cookies())
     const response = (await supabase.from("async_tasks").insert({
       payload,
-      endpoint: "/trigger/tasks"
+      endpoint: "/users/signup_all"
     }).select()) as PostgrestResponse<AsyncTask>
     console.log(response);
     if (response.data) {
