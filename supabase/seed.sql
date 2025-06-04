@@ -141,3 +141,6 @@ INSERT INTO public.employees (id, created_at, first_name, last_name, salary, bon
 ('a2c5855b-0db0-4af2-b073-bc94c30be0f4', '2023-11-28 05:41:14.900017+00', 'Grace', 'Davis', 110000.00, 8000.00, 45000.00, '2023-09-20', NULL, 'grace.davis@example.com', 'e4ac31a5-719f-4a7f-89e0-6fba3306b48b', 'b27bc186-8d27-4306-8554-1730f65182d1'),
 ('b6cfd06b-2d92-4a9a-b9c1-071b2de2c4ee', '2023-11-28 05:41:14.900017+00', 'Jack', 'Wilson', 80000.00, 5000.00, 20000.00, '2023-10-05', 'c344cd0d-55b7-42f7-9f86-50b1bbf696c2', 'jack.wilson@example.com', 'e4ac31a5-719f-4a7f-89e0-6fba3306b48b', 'aed64cfb-6e8d-44ec-9be6-cb8490e68c1d');
 
+INSERT INTO public.user_api (id, name, email, profile) VALUES
+('6f902f1a-c3f3-4d82-ba1a-4c93d0b5bf2e', 'David Anderson', 'david.anderson@example.com', 'manager'::profile),
+('c344cd0d-55b7-42f7-9f86-50b1bbf696c2', 'Emma Williams', 'emma.williams@example.com', 'admin'::profile)
