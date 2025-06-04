@@ -14,7 +14,7 @@ import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import {Employee} from "@/app/(authenticated)/employee/columns";
 import {FiUserPlus} from 'react-icons/fi';
-
+import {triggerTasks} from "@/app/(authenticated)/users/actions";
 
 const profiles = ["admin", "manager"]
 
@@ -24,11 +24,25 @@ interface AddModalProps {
 
 export default function AddModal({employees}: AddModalProps) {
   const [isLoading, setIsLoading] = useState(false)
-  const [profile, setProfile] = useState<string | undefined>("admin")
+  const [profile, setProfile] = useState<string>("admin")
   const [employeesChecked, setEmployeesChecked] = useState<string[]>([])
+  const [taskId, setTaskId] = useState<string | null>(null)
 
-  const handleSubmit = () => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setIsLoading(true)
+    try {
+      const response = await triggerTasks({profile, userIds: employeesChecked})
+      if (!response) {
+        console.warn("Failed to trigger task")
+      } else {
+        setTaskId(response)
+      }
+    } catch (error) {
+      console.warn("Failed to trigger task")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleProfileSelect = (profile: string) => {
@@ -63,7 +77,7 @@ export default function AddModal({employees}: AddModalProps) {
         <PopoverContent align="start">
           <div className="flex flex-col gap-y-2 overflow-hidden justify-center items-center">
             <form onSubmit={handleSubmit}>
-              <Label htmlFor="position">Select position</Label>
+              <Label htmlFor="position">Profile</Label>
               <DropdownMenu>
                 <DropdownMenuTrigger>
                   <Input id="position" value={profile}/>
