@@ -2,7 +2,7 @@
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 import React, { PropsWithChildren } from 'react'
-import { FiBriefcase } from 'react-icons/fi';
+import { FiBriefcase, FiUsers } from 'react-icons/fi';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { CiCloud } from "react-icons/ci";
 
@@ -21,6 +21,11 @@ export const PAGES = [
 		label: 'API',
 		href: '/api',
 		icon: CiCloud
+	},
+	{
+		label: 'Users',
+		href: '/users',
+		icon: FiUsers
 	}
 ]
 
