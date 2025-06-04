@@ -53,7 +53,7 @@ export default function AddModal({employees}: AddModalProps) {
             <FiUserPlus/>
           </div>
         </PopoverTrigger>
-        <PopoverContent className="fixed">
+        <PopoverContent align="start">
           <div className="flex flex-col gap-y-2 overflow-hidden justify-center items-center">
             <form onSubmit={handleSubmit}>
               <Label htmlFor="position">Select position</Label>
@@ -61,7 +61,7 @@ export default function AddModal({employees}: AddModalProps) {
                 <DropdownMenuTrigger>
                   <Input id="position" value={profile}/>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent align="start">
                   {profiles.map((p) => (
                     <DropdownMenuItem key={p} onSelect={() => handleProfileSelect(p)}>{p}</DropdownMenuItem>
                   ))}
