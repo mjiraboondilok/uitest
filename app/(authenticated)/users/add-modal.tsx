@@ -44,9 +44,16 @@ export default function AddModal({employees}: AddModalProps) {
     }
   }
 
+  const handleOnOpenChange = (open: boolean) => {
+    if (!open) {
+      setProfile("admin")
+      setEmployeesChecked([])
+    }
+  }
+
   return (
     <div className="rounded-md overflow-auto h-[6vh] w-[90vw] relative">
-      <Popover>
+      <Popover onOpenChange={(open) => handleOnOpenChange(open)}>
         <PopoverTrigger>
           <div className="flex items-center space-x-2">
             <div> Add users</div>
