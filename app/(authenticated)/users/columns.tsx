@@ -1,17 +1,18 @@
-import { ColumnDef } from "@tanstack/react-table"
+import {ColumnDef} from "@tanstack/react-table"
 
 export type User = {
-    name: string
-    profile: "admin" | "manager"
+  id: string
+  name: string
+  profile: "admin" | "manager"
 }
 
 export const columns: ColumnDef<User>[] = [
-    {
-        accessorKey: "name",
-        header: "Name",
-    },
-    {
-        accessorKey: "profile",
-        header: "Profile",
-    },
+  {
+    accessorKey: "name",
+    header: "Name",
+  },
+  {
+    accessorKey: "profile",
+    header: "Profile",
+  },
 ]
