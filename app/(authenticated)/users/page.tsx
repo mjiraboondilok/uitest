@@ -10,7 +10,9 @@ type UsersTable = Database['public']['Tables']['user_api']['Row']
 
 async function getUsersData() {
   const supabase = supabaseUtils.createServerClient(cookies())
-  const {data, error} = await supabase.from("user_api").select("id, name, profile").returns<UsersTable[]>()
+  const {data, error} = await supabase.from("user_api")
+    .select("id, name, email, profile")
+    .returns<UsersTable[]>()
   if (error || !data) {
     console.error(error)
     return []
@@ -18,6 +20,7 @@ async function getUsersData() {
   return data.map(user => ({
     id: user.id,
     name: user.name,
+    email: user.email,
     profile: user.profile
   })) as User[]
 }
@@ -26,8 +29,8 @@ export default async function UsersPage() {
   const data = await getUsersData()
   const employeeData = await getEmployeeData()
 
-  const userIds = data.map(user => user.id)
-  const missingEmployees = employeeData.filter(employee => !userIds.includes(employee.id))
+  const userEmails = data.map(user => user.email)
+  const missingEmployees = employeeData.filter(employee => !userEmails.includes(employee.email))
 
   return (
     <>

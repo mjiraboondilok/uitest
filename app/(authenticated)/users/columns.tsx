@@ -4,6 +4,7 @@ export type User = {
   id: string
   name: string
   profile: "admin" | "manager"
+  email: string
 }
 
 export const columns: ColumnDef<User>[] = [
