@@ -28,8 +28,15 @@ type JoinedEmployee = EmployeeTable & {
 
 export async function getEmployeeData(): Promise<Employee[]> {
   const supabase = supabaseUtils.createServerClient(cookies())
-  const employeesQuery = supabase.from("employees").select(
-    "id, first_name, last_name, salary, email, bonus, jobs(id, name), departments(id, name), start_date, manager_id(first_name, last_name), equity")
+  const user = await supabase.auth.getUser()
+  const userApi = await supabase.from("user_api")
+    .select("profile")
+    .eq("id", user.data.user?.id)
+  const employeesQuery = supabase.from("employees")
+    .select("id, first_name, last_name, salary, email, bonus, jobs(id, name), departments(id, name), start_date, manager_id(first_name, last_name), equity")
+  if (userApi.data && userApi.data[0].profile === 'manager') {
+    employeesQuery.neq("id", user.data.user?.id)
+  }
   const {data, error} = await employeesQuery.returns<JoinedEmployee[]>()
   if (error || !data) {
     console.error(error)
@@ -38,7 +45,6 @@ export async function getEmployeeData(): Promise<Employee[]> {
 
 
   return data
-    .filter(employee => employee.manager_id) //TODO move this filter to query using logged in user id
     .map(employee => {
       return {
         id: employee.id,
