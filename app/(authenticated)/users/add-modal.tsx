@@ -85,6 +85,16 @@ export default function AddModal({employees}: AddModalProps) {
     }
   }
 
+  const getSelectedEmployees = () => {
+    return employees.filter(e => employeesChecked.includes(e.id))
+      .map(e => e.name)
+      .join(", ")
+  }
+
+  const submitDisabled = () => {
+    return isLoading || employeesChecked.length <= 0
+  }
+
   return (
     <div className="rounded-md overflow-auto h-[6vh] w-[90vw] relative">
       <Popover onOpenChange={(open) => handleOnOpenChange(open)}>
@@ -100,7 +110,7 @@ export default function AddModal({employees}: AddModalProps) {
               <Label htmlFor="position">Profile</Label>
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <Input id="position" value={profile}/>
+                  <Input id="position" value={profile} readOnly/>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
                   {profiles.map((p) => (
@@ -109,12 +119,11 @@ export default function AddModal({employees}: AddModalProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
               <DropdownMenu>
+                <Label htmlFor="users">Select users to add</Label>
                 <DropdownMenuTrigger>
-                  <Button variant="secondary" className="mt-4 w-full">
-                    Select users to add
-                  </Button>
+                  <Input id="users" value={getSelectedEmployees()} readOnly/>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent align="start">
                   {employees.map((e) => (
                     <DropdownMenuCheckboxItem
                       key={e.id}
@@ -126,7 +135,7 @@ export default function AddModal({employees}: AddModalProps) {
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Button type="submit" className="mt-4 w-full" disabled={isLoading}>
+              <Button type="submit" className="mt-4 w-full" disabled={submitDisabled()}>
                 Submit
               </Button>
             </form>
